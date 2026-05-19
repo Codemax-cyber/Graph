@@ -1,12 +1,11 @@
 \documentclass{beamer}
 
-\usepackage[T5]{fontenc}
 \usepackage[utf8]{vietnam}
-\usepackage{lmodern} % Fix font shape warning
 \usepackage{amsmath}
 \usepackage{tikz}
-\usetikzlibrary{positioning,arrows.meta}
-\usepackage{tcolorbox}
+\usepackage{tcolorbox} 
+\usetikzlibrary{positioning}
+
 \usetheme{Madrid}
 
 % --- Định nghĩa màu sắc ---
@@ -15,7 +14,7 @@
 \definecolor{footred}{RGB}{255,50,50}
 \definecolor{mainred}{RGB}{220,20,60} % Màu đỏ cho nút được chọn
 
-% --- Cấu hình Footer (Bo tròn & Thông tin động) ---a
+% --- Cấu hình Footer (Bo tròn & Thông tin động) ---
 \setbeamertemplate{footline}{
   \leavevmode%
   \hbox{%
@@ -74,10 +73,9 @@
         \begin{tikzpicture}[
             node_style/.style={circle, draw, fill=mainblue!20, minimum size=7mm, inner sep=1pt, font=\small},
             edge_style/.style={draw, thick, gray!60},
-            path_style/.style={draw, green!70!black, ultra thick, -{Stealth[length=3mm, width=2mm]}},
+            path_style/.style={draw, pathgreen, ultra thick, -{Stealth[length=3mm, width=2mm]}}, % Mũi tên đẹp hơn
             start_node/.style={fill=red!60, text=white},
-            end_node/.style={fill=green!60, text=white},
-            pathgreen/.style={}
+            end_node/.style={fill=green!60, text=white}
         ]
             % Các đỉnh
             \node[node_style, start_node] (A) at (0,0) {A};
@@ -95,9 +93,9 @@
             \draw[edge_style] (Z) -- (B) node[midway, above] {\tiny 3};
             
             % Đường đi ngắn nhất (ví dụ)
-            \draw[path_style] (A) to node[midway, above left, pos=0.3]{\tiny 3} (Y);
-            \draw[path_style] (Y) to node[midway, below right, pos=0.7]{\tiny 4} (Z);
-            \draw[path_style] (Z) to node[midway, above, pos=0.5]{\tiny 3} (B);
+            \draw[path_style] (A) to node[midway, above left, pos=0.3, pathgreen]{\tiny 3} (Y);
+            \draw[path_style] (Y) to node[midway, below right, pos=0.7, pathgreen]{\tiny 4} (Z);
+            \draw[path_style] (Z) to node[midway, above, pos=0.5, pathgreen]{\tiny 3} (B);
 
         \end{tikzpicture}
     \end{column}
@@ -140,9 +138,13 @@
 % SLIDE 3
 \begin{frame}{Thành phần của đồ thị}
 
+\begin{itemize}
 \begin{center} 
 \textbf{VÍ DỤ VỀ ĐƯỜNG ĐI CỦA MỘT ĐỒ THỊ}
 \end{center}
+
+
+\end{itemize}
 
 \end{frame}
 
