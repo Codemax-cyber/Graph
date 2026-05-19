@@ -120,5 +120,3 @@ src/
 ## 📄 Giấy Phép
 
 MIT © [Codemax-cyber](https://github.com/Codemax-cyber)
-chỉ thay đổi phần link dẫn tới web còn lại giữ nguyên giúp tôi
-gửi toàn bộ cho đến MIT ... 
