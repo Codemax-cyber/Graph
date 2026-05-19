@@ -1,9 +1,8 @@
-# 🌐 [Lý Thuyết Đồ Thị](https://graph-algorithms--codeholder1112.replit.app/)
+# 🌐 Lý Thuyết Đồ Thị
 
 > Ứng dụng học tương tác về lý thuyết đồ thị và các thuật toán duyệt đồ thị — hoàn toàn bằng tiếng Việt.
 
 [![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Xem_Ngay-0d9488?style=for-the-badge)](https://graph-algorithms--codeholder1112.replit.app/)
-https://graph-algorithms--codeholder1112.replit.app/
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
@@ -55,9 +54,6 @@ pnpm install
 
 # Chạy development server
 pnpm dev
-```
-
-Mở trình duyệt và truy cập `http://localhost:5173`
 
 ---
 
