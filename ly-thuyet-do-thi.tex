@@ -1,0 +1,200 @@
+\documentclass[12pt,a4paper]{article}
+
+% --- Encoding & Language ---
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+
+% --- Layout ---
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+
+% --- Math ---
+\usepackage{amsmath, amssymb}
+
+% --- Tables ---
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{xcolor}
+
+% --- Code blocks ---
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{gray!10},
+  frame=single,
+  framerule=0.4pt,
+  rulecolor=\color{gray!50},
+  breaklines=true,
+  showstringspaces=false,
+}
+
+% --- Boxes ---
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+
+% --- Hyperlinks ---
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=teal,
+  urlcolor=teal,
+}
+
+% --- Colors ---
+\definecolor{teal}{RGB}{13, 148, 136}
+\definecolor{violet}{RGB}{124, 58, 237}
+\definecolor{amber}{RGB}{245, 158, 11}
+\definecolor{navy}{RGB}{15, 23, 42}
+\definecolor{boxbg}{RGB}{240, 253, 250}
+
+% --- Section styling ---
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{navy}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{teal}}{}{0em}{}
+
+% --- Header / Footer ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\textcolor{gray}{\small Lý Thuyết Đồ Thị}}
+\lhead{\textcolor{gray}{\small Nhóm: Codemax-cyber · bk-nguyen · levanh1711-cyber}}
+\cfoot{\thepage}
+
+% ============================================================
+\begin{document}
+
+% --- Title ---
+\begin{center}
+  {\LARGE\bfseries Lý Thuyết Đồ Thị}\\[0.4em]
+  {\large\color{gray} Nền tảng lý thuyết đồ thị --- từ định nghĩa cơ bản đến các cấu trúc biểu diễn quan trọng}\\[0.6em]
+  {\small\color{gray} Nhóm: Codemax-cyber \textbullet{} bk-nguyen \textbullet{} levanh1711-cyber}\\
+  {\small\color{gray} \url{https://github.com/Codemax-cyber/Graph}}
+\end{center}
+
+\vspace{0.5em}
+\hrule
+\vspace{1.5em}
+
+% ============================================================
+\section{1. Đồ thị là gì?}
+
+\textbf{Đồ thị (Graph)} $G = (V, E)$ là một cấu trúc toán học gồm:
+
+\begin{itemize}
+  \item \textbf{V (Vertices)}: Tập hợp các \textbf{đỉnh} (nodes). Ví dụ: thành phố, người dùng, trang web.
+  \item \textbf{E (Edges)}: Tập hợp các \textbf{cạnh} (edges) nối các đỉnh. Ví dụ: đường đi, mối quan hệ, liên kết.
+\end{itemize}
+
+\begin{tcolorbox}[colback=boxbg, colframe=teal, fontupper=\ttfamily\small]
+$G = (V, E)$ \quad $V = \{A, B, C, D\}$ \quad $E = \{(A,B),\, (B,C),\, (C,D),\, (A,D)\}$
+\end{tcolorbox}
+
+% ============================================================
+\section{2. Các khái niệm cơ bản}
+
+\begin{tabularx}{\textwidth}{>{\ttfamily\bfseries\color{teal}}p{4.5cm} X}
+  \toprule
+  \normalfont\textbf{Khái niệm} & \textbf{Định nghĩa} \\
+  \midrule
+  Đỉnh (Vertex)       & Một nút trong đồ thị, thường biểu diễn bằng một ký tự hoặc số. \\
+  Cạnh (Edge)         & Kết nối giữa hai đỉnh, có thể có trọng số (weighted) hoặc không. \\
+  Bậc (Degree)        & Số cạnh liên kết với một đỉnh. Ký hiệu: $\deg(v)$. \\
+  Đường đi (Path)     & Dãy các đỉnh liên tiếp nhau qua các cạnh, không lặp đỉnh. \\
+  Chu trình (Cycle)   & Đường đi bắt đầu và kết thúc tại cùng một đỉnh. \\
+  Đồ thị liên thông   & Mọi cặp đỉnh đều có đường đi nối với nhau. \\
+  Cây (Tree)          & Đồ thị vô hướng liên thông và không có chu trình. \\
+  DAG                 & Directed Acyclic Graph --- đồ thị có hướng không có chu trình. \\
+  Đỉnh kề (Neighbor)  & Hai đỉnh $u$, $v$ kề nhau nếu tồn tại cạnh $(u, v) \in E$. \\
+  \bottomrule
+\end{tabularx}
+
+% ============================================================
+\section{3. Phân loại đồ thị}
+
+\begin{tabularx}{\textwidth}{>{\bfseries}p{5.5cm} X}
+  \toprule
+  \textbf{Loại đồ thị} & \textbf{Đặc điểm} \\
+  \midrule
+  Đồ thị vô hướng
+    & Cạnh không có chiều. Nếu có cạnh $(u,v)$ thì cũng có $(v,u)$.
+      Ví dụ: mạng xã hội đơn giản. \\[4pt]
+  Đồ thị có hướng (Digraph)
+    & Cạnh có chiều xác định. $(u,v) \neq (v,u)$.
+      Ví dụ: Twitter follow, web link. \\[4pt]
+  Đồ thị có trọng số
+    & Mỗi cạnh gắn với một giá trị (trọng số).
+      Ví dụ: khoảng cách, chi phí, thời gian. \\[4pt]
+  Đồ thị không trọng số
+    & Tất cả cạnh có giá trị bằng nhau (mặc định $= 1$).
+      Chỉ quan tâm sự liên kết. \\[4pt]
+  Đồ thị thưa (Sparse)
+    & Số cạnh $|E| \ll |V|^2$. Dùng danh sách kề để biểu diễn hiệu quả. \\[4pt]
+  Đồ thị dày (Dense)
+    & Số cạnh $|E| \approx |V|^2$. Dùng ma trận kề để biểu diễn và truy cập nhanh. \\
+  \bottomrule
+\end{tabularx}
+
+% ============================================================
+\section{4. Biểu diễn đồ thị}
+
+\subsection{4.1 Ma trận kề (Adjacency Matrix)}
+
+Ma trận vuông $n \times n$, trong đó $A[i][j] = 1$ nếu có cạnh $(i,j)$, $= 0$ nếu không.
+
+\begin{lstlisting}
+    A  B  C  D
+A [ 0  1  1  0 ]
+B [ 1  0  0  1 ]
+C [ 1  0  0  1 ]
+D [ 0  1  1  0 ]
+\end{lstlisting}
+
+\begin{itemize}
+  \item[\textcolor{teal}{+}] Kiểm tra cạnh: $O(1)$
+  \item[\textcolor{red}{--}] Bộ nhớ: $O(V^2)$
+\end{itemize}
+
+\subsection{4.2 Danh sách kề (Adjacency List)}
+
+Mỗi đỉnh lưu danh sách các đỉnh kề. Phù hợp cho đồ thị thưa.
+
+\begin{lstlisting}
+A: [B, C]
+B: [A, D]
+C: [A, D]
+D: [B, C]
+\end{lstlisting}
+
+\begin{itemize}
+  \item[\textcolor{teal}{+}] Bộ nhớ: $O(V + E)$
+  \item[\textcolor{red}{--}] Kiểm tra cạnh: $O(\deg(u))$
+\end{itemize}
+
+% ============================================================
+\section{5. Độ phức tạp so sánh}
+
+\begin{tabularx}{\textwidth}{X >{\centering\arraybackslash\ttfamily\color{amber}}p{3.5cm} >{\centering\arraybackslash\ttfamily\color{teal}}p{3.5cm}}
+  \toprule
+  \textbf{Thao tác} & \textbf{Ma trận kề} & \textbf{Danh sách kề} \\
+  \midrule
+  Kiểm tra cạnh $(u,v)$   & $O(1)$       & $O(\deg(u))$ \\
+  Tìm tất cả đỉnh kề $u$  & $O(V)$       & $O(\deg(u))$ \\
+  Thêm cạnh               & $O(1)$       & $O(1)$ \\
+  Xóa cạnh                & $O(1)$       & $O(\deg(u))$ \\
+  Bộ nhớ                  & $O(V^2)$     & $O(V+E)$ \\
+  \bottomrule
+\end{tabularx}
+
+% ============================================================
+\vspace{2em}
+\hrule
+\vspace{0.8em}
+{\small\color{gray}
+Tài liệu được tạo tự động từ dự án web \textit{Lý Thuyết Đồ Thị}.\\
+Xem trực quan hóa tương tác tại: \\url{https://github.com/Codemax-cyber/Graph}
+}
+
+\end{document}
